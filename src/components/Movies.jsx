@@ -8,11 +8,9 @@ function Movies() {
   const [pageNo, setPageNo] = useState(1);
 
   const handlePrev = () => {
-    if (pageNo === 1) {
-      setPageNo(pageNo);
-    } else {
+    if (pageNo > 1) {
       setPageNo(pageNo - 1);
-    }
+    } 
   };
 
   const handleNext = () => {
@@ -37,6 +35,7 @@ function Movies() {
         {movies.map((movieObj) => {
           return (
             <MovieCard
+            key={movieObj.id}
               poster_path={movieObj.poster_path}
               name={movieObj.original_title}
             />
