@@ -1,15 +1,16 @@
 import React from "react";
 
-function MovieCard() {
+function MovieCard({ poster_path, name }) {
   return (
     <div
-      className="h-[40vh] w-[200px] bg-center bg-cover rounded-xl hover:scale-110 duration-300 hover:cursor-pointer flex flex-col justify-between items-center"
+      className="h-[40vh] w-[20vh] bg-center bg-cover rounded-xl hover:scale-110 duration-300 hover:cursor-pointer flex flex-row justify-between items-end"
       style={{
-        backgroundImage: `url(https://www.tallengestore.com/cdn/shop/products/Joker_-_Put_On_A_Happy_Face_-_Joaquin_Phoenix_-_Hollywood_English_Movie_Poster_3_0e557717-f9ae-4d45-82c3-27e08c2a9eeb.jpg?v=1579504984)`,
+        backgroundImage: `url(https://image.tmdb.org/t/p/original/${poster_path})`,
       }}
     >
-       
-     
+      <div className="text-white text-xl w-full p-2 text-center bg-gray-900/60">
+        {name}
+      </div>
     </div>
   );
 }
