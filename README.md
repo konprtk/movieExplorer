@@ -4,6 +4,12 @@ Welcome to the Movie Explorer app!
 
 This React application allows users to explore popular movies, view a trending movie banner, and manage a watchlist.
 
+## Live Website
+You can see the Movie Explorer in action at the following URL:
+
+[Movie Explorer](#)
+
+
 ## Features
 
 - **Trending Movies Banner**: Displays a trending movie with a dynamic banner.
@@ -16,6 +22,7 @@ This React application allows users to explore popular movies, view a trending m
 - **React Router DOM**: Library for routing and navigation.
 - **Axios**: HTTP client for making API requests.
 - **Tailwind CSS**: Utility-first CSS framework for styling.
+
 
 ## Installation
 
@@ -65,6 +72,7 @@ In the `Movies` and `Banner` components, you'll need to replace `YOUR_API_KEY` w
     - `WatchList.js`: Manages the user's watchlist.
   - `App.js`: Main application component with routing.
   - `App.css`: Styling for the application.
+
 <!-- 
 ## License
 
