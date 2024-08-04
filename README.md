@@ -1,4 +1,4 @@
-# Movie Explorer
+# Movie Explorer 🎥🔍
 
 Welcome to the Movie Explorer app!
 
