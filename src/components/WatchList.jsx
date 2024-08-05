@@ -1,6 +1,6 @@
 import React from "react";
 
-function WatchList() {
+function WatchList({watchlist}) {
   return (
     <>
       <div className="flex justify-center flex-wrap m-4">
@@ -33,21 +33,28 @@ function WatchList() {
           </thead>
 
           <tbody>
-            <tr className="border-b-2">
-              <td className="flex items-center px-6 py-4">
-                <img
-                  className="h-[6rem] w-[10rem]"
-                  src={`https://lumiere-a.akamaihd.net/v1/images/p_disney_thecreator_v1_2776_cc1a5f09.jpeg`}
-                  alt=""
-                />
-                <div className="mx-10">The Creator</div>
-              </td>
-              <td>9.5</td>
-              <td>9</td>
-              <td>Sci-Fi</td>
 
-              <td className="text-red-600">Delete</td>
-            </tr>
+          {watchlist.map((movieObj)=>{
+            return (
+              <tr className="border-b-2">
+                <td className="flex items-center px-6 py-4">
+                  <img
+                    className="h-[6rem] w-[10rem]"
+                    src={`https://image.tmdb.org/t/p/original/${movieObj.backdrop_path}`}
+                    alt="Poster"
+                  />
+                  <div className="mx-10">{movieObj.title}</div>
+                </td>
+                <td>{movieObj.vote_average.toFixed(1)}</td>
+                <td>{movieObj.popularity}</td>
+                <td>{movieObj.genre_ids}</td>
+
+                <td className="text-red-600">Delete</td>
+              </tr>
+            );
+          })}
+
+            
           </tbody>
         </table>
       </div>
