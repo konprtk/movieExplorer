@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 function WatchList({watchlist}) {
+
+  const [search, setSearch] = useState("")
+
+  let handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
+
   return (
     <>
       <div className="flex justify-center flex-wrap m-4">
@@ -14,7 +21,7 @@ function WatchList({watchlist}) {
       </div>
 
       <div className="flex justify-center my-4">
-        <input
+        <input onChange={handleSearch} value={search}
           type="text"
           placeholder="Search for movies"
           className="h-[3rem] w-[18rem] bg-gray-200 outline-none px-4"
@@ -34,7 +41,9 @@ function WatchList({watchlist}) {
 
           <tbody>
 
-          {watchlist.map((movieObj)=>{
+          {watchlist.filter((movieObj) => {
+            return movieObj.title.toLowerCase().includes(search.toLocaleLowerCase())
+          }).map((movieObj)=>{
             return (
               <tr className="border-b-2">
                 <td className="flex items-center px-6 py-4">
