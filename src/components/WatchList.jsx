@@ -1,12 +1,27 @@
 import React, { useState } from "react";
+import genreIds from "../utilities/Genres";
 
-function WatchList({watchlist}) {
-
-  const [search, setSearch] = useState("")
+function WatchList({ watchlist, setWatchList }) {
+  const [search, setSearch] = useState("");
 
   let handleSearch = (e) => {
-    setSearch(e.target.value)
-  }
+    setSearch(e.target.value);
+  };
+
+  let sortIncreasing = () => {
+    let sortedIncreasing = watchlist.sort((movieA, movieB) => {
+      return movieA.vote_average - movieB.vote_average;
+    });
+    setWatchList([...sortedIncreasing]);
+  };
+
+  let sortDecreasing = () => {
+    let sortedDecreasing = watchlist.sort((movieA, movieB) => {
+      return movieB.vote_average - movieA.vote_average;
+    });
+
+    setWatchList([...sortedDecreasing]);
+  };
 
   return (
     <>
@@ -21,7 +36,9 @@ function WatchList({watchlist}) {
       </div>
 
       <div className="flex justify-center my-4">
-        <input onChange={handleSearch} value={search}
+        <input
+          onChange={handleSearch}
+          value={search}
           type="text"
           placeholder="Search for movies"
           className="h-[3rem] w-[18rem] bg-gray-200 outline-none px-4"
@@ -33,37 +50,46 @@ function WatchList({watchlist}) {
           <thead className="border-b-2">
             <tr>
               <th>Name</th>
-              <th>Ratings</th>
+              <th className="flex justify-center">
+                <div onClick={sortIncreasing} className="p-2 cursor-pointer">
+                  <i className="fa-solid fa-arrow-up"></i>
+                </div>
+                <div className="p-2">Ratings</div>
+                <div onClick={sortDecreasing} className="p-2 cursor-pointer">
+                  <i className="fa-solid fa-arrow-down"></i>
+                </div>
+              </th>
               <th>Popularity</th>
               <th>Genre</th>
             </tr>
           </thead>
 
           <tbody>
+            {watchlist
+              .filter((movieObj) => {
+                return movieObj.title
+                  .toLowerCase()
+                  .includes(search.toLocaleLowerCase());
+              })
+              .map((movieObj) => {
+                return (
+                  <tr className="border-b-2">
+                    <td className="flex items-center px-6 py-4">
+                      <img
+                        className="h-[6rem] w-[10rem]"
+                        src={`https://image.tmdb.org/t/p/original/${movieObj.backdrop_path}`}
+                        alt="Poster"
+                      />
+                      <div className="mx-10">{movieObj.title}</div>
+                    </td>
+                    <td>{movieObj.vote_average.toFixed(1)}</td>
+                    <td>{movieObj.popularity}</td>
+                    <td>{genreIds[movieObj.genre_ids[0]]}</td>
 
-          {watchlist.filter((movieObj) => {
-            return movieObj.title.toLowerCase().includes(search.toLocaleLowerCase())
-          }).map((movieObj)=>{
-            return (
-              <tr className="border-b-2">
-                <td className="flex items-center px-6 py-4">
-                  <img
-                    className="h-[6rem] w-[10rem]"
-                    src={`https://image.tmdb.org/t/p/original/${movieObj.backdrop_path}`}
-                    alt="Poster"
-                  />
-                  <div className="mx-10">{movieObj.title}</div>
-                </td>
-                <td>{movieObj.vote_average.toFixed(1)}</td>
-                <td>{movieObj.popularity}</td>
-                <td>{movieObj.genre_ids}</td>
-
-                <td className="text-red-600">Delete</td>
-              </tr>
-            );
-          })}
-
-            
+                    <td className="text-red-600">Delete</td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>

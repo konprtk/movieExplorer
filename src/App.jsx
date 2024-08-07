@@ -32,7 +32,7 @@ function App() {
     return
    }
    setWatchList(JSON.parse(moviesFromLocalStorage))
-  })
+  },[])
 
   return (
     <>
@@ -50,11 +50,15 @@ function App() {
                   handleAddToWatchList={handleAddToWatchList}
                   handleRemoveFromWatchList={handleRemoveFromWatchList}
                 />
-                
               </>
             }
           />
-          <Route path="/watchlist" element={<WatchList watchlist={watchlist} />} />
+          <Route
+            path="/watchlist"
+            element={
+              <WatchList watchlist={watchlist} setWatchList={setWatchList} />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>
