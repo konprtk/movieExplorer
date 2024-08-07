@@ -50,6 +50,7 @@ function App() {
                   handleAddToWatchList={handleAddToWatchList}
                   handleRemoveFromWatchList={handleRemoveFromWatchList}
                 />
+                
               </>
             }
           />
