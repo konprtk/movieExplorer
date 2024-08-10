@@ -7,10 +7,10 @@ Welcome to the Movie Explorer app!
 
 This React application allows users to explore popular movies, view a trending movie banner, and manage a watchlist.
 
-## Live Website
+<!-- ## Live Website
 You can see the Movie Explorer in action at the following URL:
 
-[Movie Explorer](#)
+[Movie Explorer](#) -->
 
 
 ## Features
